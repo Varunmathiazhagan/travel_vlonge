@@ -145,12 +145,11 @@ const Navbar = memo(({ cart, theme = 'light', isAuthenticated, setIsAuthenticate
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
-  // Updated navigation links with travel-related icons - removed flights
+  // Updated navigation links - removed packages and hotels, added about
   const navLinks = [
     { to: "/home", icon: <FaHome />, text: t("Home", "navbar") },
     { to: "/destinations", icon: <FaGlobeAmericas />, text: t("Destinations", "navbar") },
-    { to: "/packages", icon: <FaSuitcaseRolling />, text: t("Packages", "navbar") },
-    { to: "/hotels", icon: <FaHotel />, text: t("Hotels", "navbar") },
+    { to: "/about", icon: <FaInfoCircle />, text: t("About", "navbar") },
     { to: "/recommendations", icon: <FaRobot />, text: t("AI Trip Planner", "navbar") },
     { to: "/contact", icon: <FaHeadset />, text: t("Support", "navbar") },
   ];

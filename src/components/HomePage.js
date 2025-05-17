@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { FaGlobe, FaPlane, FaHotel, FaChevronDown, FaQuoteLeft, FaImages, FaUmbrellaBeach, FaCar, FaPassport, FaMapMarkedAlt, FaCheckCircle, FaShieldAlt, FaSuitcase, FaAward, FaClipboardCheck, FaCompass, FaCreditCard, FaConciergeBell, FaCalendarAlt } from "react-icons/fa"
 import { useInView } from "react-intersection-observer"
 import { useTranslation } from "../utils/TranslationContext"
+import { useState, useRef } from "react"
 
 // Add ScrollProgressBar component
 const ScrollProgressBar = () => {
@@ -20,31 +21,126 @@ const ScrollProgressBar = () => {
 // VideoBackground Component
 const VideoBackground = () => {
   const { t } = useTranslation()
-  
+  const [videoError, setVideoError] = useState(false)
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const videoRef = useRef(null)
+
+  // Handle video load error
+  const handleVideoError = () => {
+    setVideoError(true)
+    console.log("Video failed to load")
+  }
+
+  // Handle video loading
+  const handleVideoLoad = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log("Video autoplay failed:", error)
+        setVideoError(true)
+      })
+      setVideoLoaded(true)
+    }
+  }
+
   return (
     <div className="relative h-screen w-screen overflow-hidden -mt-16 md:-mt-[4.5rem]">
-      <video 
-        autoPlay 
-        muted 
-        loop 
-        playsInline 
-        className="absolute inset-0 w-full h-full object-cover min-w-full min-h-full scale-105 transform-gpu"
-      >
-        <source src="/images/b.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/60 to-black/70 flex items-center justify-center">
+      {!videoLoaded && !videoError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-blue-900">
+          <div className="w-16 h-16 border-4 border-blue-300 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
+      
+      {!videoError ? (
+        <video 
+          ref={videoRef}
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className={`absolute inset-0 w-full h-full object-cover min-w-full min-h-full transform-gpu transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          onError={handleVideoError}
+          onLoadedData={handleVideoLoad}
+        >
+          <source 
+            src="https://cdn.coverr.co/videos/coverr-crystal-clear-blue-sea-with-a-tropical-island-7728/1080p.mp4"
+            type="video/mp4" 
+          />
+          <source 
+            src="https://cdn.coverr.co/videos/coverr-crystal-clear-blue-sea-with-a-tropical-island-7728/preview.webm"
+            type="video/webm" 
+          />
+          {t("Your browser does not support the video tag.", "home")}
+        </video>
+      ) : (
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: "url('https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRyb3BpY2FsJTIwYmVhY2h8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1920&q=80')"
+          }}
+        >
+        </div>
+      )}
+      
+      {/* Enhanced gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/50 via-blue-900/60 to-black/80"></div>
+      
+      {/* Animated particles */}
+      <div className="absolute inset-0 opacity-30">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 rounded-full bg-white"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 3,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+            }}
+          />
+        ))}
+      </div>
+      
+      <div className="absolute inset-0 flex items-center justify-center">
         <motion.div
-          className="text-center px-4 pt-16 md:pt-[4.5rem]"
+          className="text-center px-4 pt-16 md:pt-[4.5rem] max-w-5xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <h1 className="text-4xl md:text-7xl font-bold mb-6 text-white">
+          {/* Decorative element */}
+          <motion.div 
+            className="w-24 h-1 bg-gradient-to-r from-blue-400 to-indigo-300 mx-auto mb-8"
+            initial={{ width: 0 }}
+            animate={{ width: 96 }}
+            transition={{ delay: 1, duration: 0.8 }}
+          />
+          
+          <h1 className="text-4xl md:text-7xl font-bold mb-6 text-white drop-shadow-lg">
             {t("Discover Your", "home")} <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-300">{t("Perfect Getaway", "home")}</span>
           </h1>
-          <p className="text-lg md:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto">{t("Unforgettable journeys begin with VoyageVista - Your premium travel companion", "home")}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          
+          <motion.p 
+            className="text-lg md:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto drop-shadow"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            {t("Unforgettable journeys begin with VoyageVista - Your premium travel companion", "home")}
+          </motion.p>
+          
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.8 }}
+          >
             <Link to="/destinations">
               <motion.button
                 className="group bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 transition duration-300 shadow-lg hover:shadow-blue-500/50 w-full sm:w-auto"
@@ -69,15 +165,31 @@ const VideoBackground = () => {
                 </span>
               </motion.button>
             </Link>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
+      
+      {/* Enhanced scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
+        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
       >
-        <FaChevronDown className="text-white text-4xl opacity-80" />
+        <motion.p 
+          className="text-white/80 text-sm mb-2"
+          animate={{ opacity: [0.6, 1, 0.6] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          {t("Scroll to explore", "home")}
+        </motion.p>
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
+          className="bg-white/30 backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center"
+        >
+          <FaChevronDown className="text-white text-xl" />
+        </motion.div>
       </motion.div>
     </div>
   )
@@ -215,19 +327,19 @@ const TestimonialsSection = () => {
       text: t("VoyageVista transformed our honeymoon with their premium package to the Maldives. Their attention to detail made every moment magical.", "home"),
       author: "Emily & James",
       company: t("Newlyweds", "home"),
-      image: "/images/testimonial1.jpg"
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y291cGxleGVwZXJpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
     },
     {
       text: t("As a business traveler, their concierge service is invaluable. They arranged everything for my multi-city Asian tour seamlessly.", "home"),
       author: "Michael Chen",
       company: t("Executive Traveler", "home"),
-      image: "/images/testimonial2.jpg"
+      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YnVzaW5lc3MlMjBwZXJzb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
     },
     {
       text: t("Their AI planner created the perfect European itinerary for my family of five. The kids loved the activities and we loved the luxury accommodations.", "home"),
       author: "The Rodriguez Family",
       company: t("Family Explorers", "home"),
-      image: "/images/testimonial3.jpg"
+      image: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFtaWx5JTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
     }
   ];
 
@@ -334,7 +446,7 @@ const TravelInsuranceSection = () => {
         </div>
         <div className="md:w-1/2">
           <motion.img
-            src="/images/travel-insurance.jpg" 
+            src="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dHJhdmVsJTIwaW5zdXJhbmNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" 
             alt="Travel Insurance"
             className="rounded-2xl shadow-2xl object-cover w-full h-full max-h-[500px]"
             initial={{ opacity: 0, x: 50 }}
@@ -358,25 +470,25 @@ const DestinationsShowcaseSection = () => {
   const destinations = [
     { 
       name: t("Santorini, Greece", "home"), 
-      image: "/images/rc.jpeg", 
+      image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c2FudG9yaW5pfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60", 
       description: t("Luxury villas with infinity pools overlooking the Aegean Sea", "home"),
       price: "$1,299"
     },
     { 
       name: t("Bali, Indonesia", "home"), 
-      image: "/images/co.jpeg", 
+      image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFsaXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60", 
       description: t("Private beach resorts with traditional Balinese spa treatments", "home"),
       price: "$1,099"
     },
     { 
       name: t("Kyoto, Japan", "home"), 
-      image: "/images/rs.jpeg", 
+      image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a3lvdG98ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60", 
       description: t("Cultural immersion with exclusive access to ancient temples", "home"),
       price: "$1,499"
     },
     { 
       name: t("Machu Picchu, Peru", "home"), 
-      image: "/images/v.jpeg", 
+      image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFjaHUlMjBwaWNjaHV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60", 
       description: t("Guided heritage tours with luxury mountain accommodations", "home"),
       price: "$1,899"
     }

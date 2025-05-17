@@ -40,7 +40,7 @@ const DestinationsPage = () => {
       duration: 7,
       rating: 4.8,
       reviews: 1245,
-      image: "/images/destinations/santorini.jpg",
+      image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c2FudG9yaW5pfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
       featured: true,
       category: "beach"
     },
@@ -53,7 +53,7 @@ const DestinationsPage = () => {
       duration: 5,
       rating: 4.9,
       reviews: 873,
-      image: "/images/destinations/swiss-alps.jpg",
+      image: "https://images.unsplash.com/photo-1531400158697-3956bbee0f37?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3dpc3MlMjBhbHBzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
       featured: true,
       category: "mountain"
     },
@@ -66,7 +66,7 @@ const DestinationsPage = () => {
       duration: 8,
       rating: 4.7,
       reviews: 1052,
-      image: "/images/destinations/tokyo.jpg",
+      image: "https://images.unsplash.com/photo-1533050487297-09b450131914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dG9reW98ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
       featured: false,
       category: "city"
     },
@@ -79,7 +79,7 @@ const DestinationsPage = () => {
       duration: 10,
       rating: 4.6,
       reviews: 1892,
-      image: "/images/destinations/bali.jpg",
+      image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFsaXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       featured: true,
       category: "beach"
     },
@@ -92,7 +92,7 @@ const DestinationsPage = () => {
       duration: 9,
       rating: 4.9,
       reviews: 762,
-      image: "/images/destinations/machu-picchu.jpg",
+      image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFjaHUlMjBwaWNjaHV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
       featured: false,
       category: "adventure"
     },
@@ -105,7 +105,7 @@ const DestinationsPage = () => {
       duration: 6,
       rating: 4.8,
       reviews: 541,
-      image: "/images/destinations/serengeti.jpg",
+      image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2VyZW5nZXRpfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
       featured: true,
       category: "adventure"
     },
@@ -118,7 +118,7 @@ const DestinationsPage = () => {
       duration: 5,
       rating: 4.7,
       reviews: 1248,
-      image: "/images/destinations/venice.jpg",
+      image: "https://images.unsplash.com/photo-1514890547357-a9ee288728e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dmVuaWNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
       featured: false,
       category: "city"
     },
@@ -131,7 +131,7 @@ const DestinationsPage = () => {
       duration: 12,
       rating: 4.6,
       reviews: 318,
-      image: "/images/destinations/amazon.jpg",
+      image: "https://images.unsplash.com/photo-1535752385016-16aa049b6a8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YW1hem9uJTIwcmFpbmZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       featured: false,
       category: "adventure"
     },
@@ -144,7 +144,7 @@ const DestinationsPage = () => {
       duration: 6,
       rating: 4.9,
       reviews: 687,
-      image: "/images/destinations/iceland.jpg",
+      image: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bm9ydGhlcm4lMjBsaWdodHN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
       featured: true,
       category: "adventure"
     },
@@ -157,7 +157,7 @@ const DestinationsPage = () => {
       duration: 8,
       rating: 4.8,
       reviews: 945,
-      image: "/images/destinations/great-barrier-reef.jpg",
+      image: "https://images.unsplash.com/photo-1517241080758-95a42c519c1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z3JlYXQlMjBiYXJyaWVyJTIwcmVlZnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       featured: false,
       category: "beach"
     },
@@ -170,7 +170,7 @@ const DestinationsPage = () => {
       duration: 5,
       rating: 4.7,
       reviews: 2125,
-      image: "/images/destinations/paris.jpg",
+      image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGFyaXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
       featured: false,
       category: "city"
     },
@@ -183,7 +183,7 @@ const DestinationsPage = () => {
       duration: 7,
       rating: 4.8,
       reviews: 872,
-      image: "/images/destinations/kyoto.jpg",
+      image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a3lvdG98ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
       featured: true,
       category: "cultural"
     },
@@ -258,7 +258,7 @@ const DestinationsPage = () => {
       <div className="relative h-[60vh] overflow-hidden">
         {/* Hero Image - Using a placeholder for now */}
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
-             style={{ backgroundImage: "url('/images/destinations/hero-bg.jpg')" }}>
+             style={{ backgroundImage: "url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJhdmVsfGVufDB8fDB8fHww&auto=format&fit=crop&w=1000&q=60')" }}>
           {/* Parallax Effect */}
           <motion.div 
             className="absolute inset-0"
